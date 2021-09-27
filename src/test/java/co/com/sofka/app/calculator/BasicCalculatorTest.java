@@ -93,4 +93,32 @@ public class BasicCalculatorTest {
         assertEquals(expectedResult, basicCalculator.multiply(first, second),
                 () -> first + " - " + second + " should equal " + expectedResult);
     }
+
+    @Test
+    @DisplayName("Testing divisions: 1/1=1")
+    public void division() {
+        // Arrange
+        Long number1 = 1L;
+        Long number2 = 1L;
+        Long expectedValue = 1L;
+
+        // Act
+        Long result = basicCalculator.division(number1, number2);
+
+        // Assert
+        assertEquals(expectedValue, result);
+    }
+
+    @DisplayName("Testing several divisions")
+    @ParameterizedTest(name = "{0} / {1} = {1}")
+    @CsvSource({
+            "1,    1,   1",
+            "12,    6,   2",
+            "49,  7, 7",
+            "100,  10, 10"
+    })
+    public void severalDivions(Long first, Long second, Long expectedResult) {
+        assertEquals(expectedResult, basicCalculator.division(first, second),
+                () -> first + " - " + second + " should equal " + expectedResult);
+    }
 }
